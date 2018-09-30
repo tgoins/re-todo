@@ -1,5 +1,5 @@
 const path = require('path');
-const outputDir = path.join(__dirname, "build/");
+const outputDir = path.join(__dirname, 'public/');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -9,6 +9,6 @@ module.exports = {
   output: {
     path: outputDir,
     publicPath: outputDir,
-    filename: 'Index.js',
-  },
+    filename: 'index.js'
+  }
 };

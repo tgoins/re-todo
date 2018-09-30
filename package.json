@@ -15,13 +15,16 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "reason-react": ">=0.4.0"
+    "@jsiebern/bs-material-ui": "^0.3.3",
+    "@material-ui/core": "^3.1.1",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "reason-react": "^0.5.3"
   },
   "devDependencies": {
+    "bs-css": "^7.2.0",
     "bs-platform": "^4.0.5",
-    "webpack": "^4.0.1",
-    "webpack-cli": "^2.0.10"
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
   }
 }
