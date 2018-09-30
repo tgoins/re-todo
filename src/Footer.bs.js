@@ -4,15 +4,20 @@
 var Css = require("bs-css/src/Css.js");
 var React = require("react");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
+var Utils$ReactTemplate = require("./Utils.bs.js");
+var MaterialUi_Color_Blue = require("@jsiebern/bs-material-ui/src/MaterialUi_Color_Blue.bs.js");
 var MaterialUi_Typography = require("@jsiebern/bs-material-ui/src/MaterialUi_Typography.bs.js");
 
 var component = ReasonReact.statelessComponent("Footer");
 
 var footerClass = Css.style(/* :: */[
-      Css.backgroundColor(Css.aliceblue),
+      Css.backgroundColor(Css.hex(Utils$ReactTemplate.muiToCss(MaterialUi_Color_Blue.c400))),
       /* :: */[
         Css.color(Css.white),
-        /* [] */0
+        /* :: */[
+          Css.padding(Css.em(1.0)),
+          /* [] */0
+        ]
       ]
     ]);
 
@@ -30,7 +35,10 @@ function make() {
           /* render */(function () {
               return React.createElement("footer", {
                           className: footerClass
-                        }, ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(/* Center */980392437, undefined, /* TextSecondary */-507693849, undefined, true, undefined, undefined, undefined, /* Body1 */-904051921, undefined, undefined, /* array */["Copyright (c) 2018 Tanner Goins"])));
+                        }, ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(/* Center */980392437, undefined, /* Inherit */-72987685, undefined, true, undefined, undefined, undefined, /* Body1 */-904051921, undefined, undefined, /* array */[
+                                  ('\u00a9'),
+                                  " 2018 Tanner Goins"
+                                ])));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],

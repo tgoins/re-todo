@@ -17,12 +17,13 @@
   "dependencies": {
     "@jsiebern/bs-material-ui": "^0.3.3",
     "@material-ui/core": "^3.1.1",
+    "bs-css": "^7.2.0",
+    "rationale": "^0.1.7",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "reason-react": "^0.5.3"
   },
   "devDependencies": {
-    "bs-css": "^7.2.0",
     "bs-platform": "^4.0.5",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"

@@ -25,27 +25,36 @@ var TodoItem$ReactTemplate = require("./TodoItem.bs.js");
 var Styles = require("@material-ui/core/styles");
 var MaterialUi_MuiThemeProvider = require("@jsiebern/bs-material-ui/src/MaterialUi_MuiThemeProvider.bs.js");
 
+var fullWidth = Css.width(Css.pct(100.0));
+
+var flexBox = Css.display(Css.flexBox);
+
+var marginAuto = Css.margin(Css.auto);
+
 var centered = Css.style(/* :: */[
       Css.alignSelf(Css.center),
       /* :: */[
-        Css.margin(Css.auto),
+        marginAuto,
         /* [] */0
       ]
     ]);
 
 var root = Css.style(/* :: */[
-      Css.display(Css.flexBox),
+      flexBox,
       /* :: */[
         Css.minHeight(Css.vh(100.0)),
         /* :: */[
           Css.flexDirection(Css.column),
-          /* [] */0
+          /* :: */[
+            Css.flexGrow(1),
+            /* [] */0
+          ]
         ]
       ]
     ]);
 
 var layoutContainer = Css.style(/* :: */[
-      Css.display(Css.flexBox),
+      flexBox,
       /* :: */[
         Css.flex(1),
         /* [] */0
@@ -61,22 +70,61 @@ var layout = Css.style(/* :: */[
     ]);
 
 var mainPaper = Css.style(/* :: */[
-      Css.minHeight(Css.vh(80.0)),
+      Css.width(Css.pct(100.0)),
       /* :: */[
-        Css.padding(Css.px(8)),
-        /* [] */0
+        Css.height(Css.vh(60.0)),
+        /* :: */[
+          Css.padding(Css.px(8)),
+          /* [] */0
+        ]
       ]
     ]);
 
 var form = Css.style(/* :: */[
-      Css.display(Css.flexBox),
+      fullWidth,
       /* :: */[
-        Css.flexDirection(Css.column),
+        Css.alignSelf(Css.center),
         /* :: */[
           Css.alignItems(Css.center),
-          /* [] */0
+          /* :: */[
+            Css.marginTop(Css.px(10)),
+            /* :: */[
+              Css.marginBottom(Css.px(10)),
+              /* :: */[
+                Css.marginLeft(Css.auto),
+                /* :: */[
+                  Css.marginRight(Css.auto),
+                  /* [] */0
+                ]
+              ]
+            ]
+          ]
         ]
       ]
+    ]);
+
+var submitBtn = Css.style(/* :: */[
+      Css.alignSelf(Css.center),
+      /* :: */[
+        Css.important(Css.margin(Css.auto)),
+        /* :: */[
+          Css.important(flexBox),
+          /* :: */[
+            Css.marginTop(Css.em(1.0)),
+            /* [] */0
+          ]
+        ]
+      ]
+    ]);
+
+var textInput = Css.style(/* :: */[
+      fullWidth,
+      /* [] */0
+    ]);
+
+var smallMarginTop = Css.style(/* :: */[
+      Css.important(Css.marginTop(Css.em(1.0))),
+      /* [] */0
     ]);
 
 var theme = Styles.createMuiTheme({
@@ -124,44 +172,51 @@ function make() {
                                         className: layoutContainer
                                       }, React.createElement("main", {
                                             className: layout
-                                          }, ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, centered, undefined, undefined, undefined, undefined, undefined, /* V4 */3, /* V6 */5, /* V8 */7, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Paper.make(mainPaper, undefined, undefined, undefined, undefined, undefined, /* array */[
-                                                              ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, Styles$ReactTemplate.textCenter, undefined, undefined, undefined, undefined, undefined, undefined, /* Headline */579538228, undefined, undefined, /* array */["What needs to be done?"])),
-                                                              React.createElement("form", {
-                                                                    className: form,
-                                                                    action: "#",
-                                                                    onSubmit: (function () {
-                                                                        return Curry._1(self[/* send */3], /* AddTodo */0);
-                                                                      })
-                                                                  }, ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, Styles$ReactTemplate.textCenter, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Title:"])), ReasonReact.element(undefined, undefined, MaterialUi_Input.make(undefined, undefined, centered, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, (function ($$event) {
-                                                                              return Curry._1(self[/* send */3], /* ChangeTitle */Block.__(0, [$$event.target.value]));
-                                                                            }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* `String */[
-                                                                            -976970511,
-                                                                            self[/* state */1][/* newTitle */1]
-                                                                          ], undefined, undefined, /* array */[])), ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, Styles$ReactTemplate.textCenter, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Description (optional):"])), ReasonReact.element(undefined, undefined, MaterialUi_TextField.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, (function ($$event) {
-                                                                              return Curry._1(self[/* send */3], /* ChangeDescription */Block.__(1, [$$event.target.value]));
-                                                                            }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* `String */[
-                                                                            -976970511,
-                                                                            self[/* state */1][/* newDescription */2]
-                                                                          ], undefined, /* array */[])), ReasonReact.element(undefined, undefined, MaterialUi_Button.make(Styles$ReactTemplate.smBtn, /* Primary */-791844958, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "submit", /* Raised */-387916264, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Add to-do"]))),
-                                                              match !== 0 ? React.createElement("h2", undefined, "To do") : null,
-                                                              ReactDOMRe.createElementVariadic("ul", undefined, $$Array.of_list(List.map((function (t) {
-                                                                              return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
-                                                                                                return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
-                                                                                              }), undefined, /* array */[]));
-                                                                            }), List.filter((function (t) {
-                                                                                    return !t[/* complete */2];
-                                                                                  }))(self[/* state */1][/* todos */0])))),
-                                                              match$1 !== 0 ? React.createElement("h2", undefined, "Completed tasks") : null,
-                                                              ReactDOMRe.createElementVariadic("ul", undefined, $$Array.of_list(List.map((function (t) {
-                                                                              return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
-                                                                                                return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
-                                                                                              }), (function () {
-                                                                                                return Curry._1(self[/* send */3], /* RemoveTodo */Block.__(3, [t]));
-                                                                                              }), /* array */[]));
-                                                                            }), List.filter((function (t) {
-                                                                                    return t[/* complete */2];
-                                                                                  }))(self[/* state */1][/* todos */0]))))
-                                                            ]))])))), ReasonReact.element(undefined, undefined, Footer$ReactTemplate.make(/* array */[])))]));
+                                          }, ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, centered, undefined, undefined, /* Column */-81804554, undefined, undefined, /* V4 */3, /* V6 */5, /* V8 */7, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Paper.make(mainPaper, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, Styles$ReactTemplate.textCenter, undefined, undefined, undefined, undefined, undefined, undefined, /* Headline */579538228, undefined, undefined, /* array */["What needs to be done?"]))])),
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, centered, undefined, undefined, /* Column */-81804554, true, /* Center */980392437, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[React.createElement("form", {
+                                                                                        className: form,
+                                                                                        action: "#",
+                                                                                        onSubmit: (function () {
+                                                                                            return Curry._1(self[/* send */3], /* AddTodo */0);
+                                                                                          })
+                                                                                      }, ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, centered, undefined, true, /* Column */-81804554, undefined, /* Center */980392437, /* V5 */4, /* V7 */6, /* V9 */8, undefined, undefined, undefined, /* V11 */10, undefined, undefined, undefined, /* array */[
+                                                                                                ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Input.make(undefined, undefined, textInput, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, (function ($$event) {
+                                                                                                                      return Curry._1(self[/* send */3], /* ChangeTitle */Block.__(0, [$$event.target.value]));
+                                                                                                                    }), undefined, undefined, undefined, undefined, undefined, "Title", undefined, undefined, undefined, undefined, undefined, /* `String */[
+                                                                                                                    -976970511,
+                                                                                                                    self[/* state */1][/* newTitle */1]
+                                                                                                                  ], undefined, undefined, /* array */[]))])),
+                                                                                                ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_TextField.make(undefined, undefined, textInput, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true, undefined, undefined, (function ($$event) {
+                                                                                                                      return Curry._1(self[/* send */3], /* ChangeDescription */Block.__(1, [$$event.target.value]));
+                                                                                                                    }), undefined, "Description (optional)", undefined, /* `Int */[
+                                                                                                                    3654863,
+                                                                                                                    4
+                                                                                                                  ], undefined, undefined, undefined, undefined, /* `String */[
+                                                                                                                    -976970511,
+                                                                                                                    self[/* state */1][/* newDescription */2]
+                                                                                                                  ], undefined, /* array */[]))])),
+                                                                                                ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, smallMarginTop, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Button.make(submitBtn, /* Primary */-791844958, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "submit", /* Raised */-387916264, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Add to-do"]))]))
+                                                                                              ])))])),
+                                                                        match !== 0 ? React.createElement("h2", undefined, "To do") : null,
+                                                                        ReactDOMRe.createElementVariadic("div", undefined, $$Array.of_list(List.map((function (t) {
+                                                                                        return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
+                                                                                                          return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
+                                                                                                        }), undefined, /* array */[]));
+                                                                                      }), List.filter((function (t) {
+                                                                                              return !t[/* complete */2];
+                                                                                            }))(self[/* state */1][/* todos */0])))),
+                                                                        match$1 !== 0 ? React.createElement("h2", undefined, "Completed tasks") : null,
+                                                                        ReactDOMRe.createElementVariadic("div", undefined, $$Array.of_list(List.map((function (t) {
+                                                                                        return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
+                                                                                                          return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
+                                                                                                        }), (function () {
+                                                                                                          return Curry._1(self[/* send */3], /* RemoveTodo */Block.__(3, [t]));
+                                                                                                        }), /* array */[]));
+                                                                                      }), List.filter((function (t) {
+                                                                                              return t[/* complete */2];
+                                                                                            }))(self[/* state */1][/* todos */0]))))
+                                                                      ]))]))])))), ReasonReact.element(undefined, undefined, Footer$ReactTemplate.make(/* array */[])))]));
             }),
           /* initialState */(function () {
               return /* record */[
@@ -245,12 +300,18 @@ var $$default = ReasonReact.wrapReasonForJs(component, (function () {
         return make(/* array */[]);
       }));
 
+exports.fullWidth = fullWidth;
+exports.flexBox = flexBox;
+exports.marginAuto = marginAuto;
 exports.centered = centered;
 exports.root = root;
 exports.layoutContainer = layoutContainer;
 exports.layout = layout;
 exports.mainPaper = mainPaper;
 exports.form = form;
+exports.submitBtn = submitBtn;
+exports.textInput = textInput;
+exports.smallMarginTop = smallMarginTop;
 exports.theme = theme;
 exports.component = component;
 exports.handleClick = handleClick;
@@ -258,4 +319,4 @@ exports.make = make;
 exports.$$default = $$default;
 exports.default = $$default;
 exports.__esModule = true;
-/* centered Not a pure module */
+/* fullWidth Not a pure module */

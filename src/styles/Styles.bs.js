@@ -3,31 +3,15 @@
 
 var Css = require("bs-css/src/Css.js");
 
+Css.$$global("body", /* :: */[
+      Css.backgroundColor(Css.hex("fafafa")),
+      /* [] */0
+    ]);
+
 var textCenter = Css.style(/* :: */[
       Css.textAlign(Css.center),
       /* [] */0
     ]);
 
-var smBtn = Css.style(/* :: */[
-      Css.maxWidth(Css.px(200)),
-      /* [] */0
-    ]);
-
-var displayFlex = Css.style(/* :: */[
-      Css.display(Css.flexBox),
-      /* [] */0
-    ]);
-
-var flexColumn = Css.style(/* :: */[
-      Css.display(Css.flexBox),
-      /* :: */[
-        Css.flexDirection(Css.column),
-        /* [] */0
-      ]
-    ]);
-
 exports.textCenter = textCenter;
-exports.smBtn = smBtn;
-exports.displayFlex = displayFlex;
-exports.flexColumn = flexColumn;
-/* textCenter Not a pure module */
+/*  Not a pure module */

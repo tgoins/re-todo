@@ -9,6 +9,10 @@ type state = {
   newDescription: string,
 };
 
+let fullWidth = Css.width(Css.pct(100.0));
+let flexBox = Css.display(Css.flexBox);
+let marginAuto = Css.margin(Css.auto);
+
 type action =
   | AddTodo
   | ChangeTitle(string)
@@ -16,23 +20,42 @@ type action =
   | ChangeComplete(todo)
   | RemoveTodo(todo);
 
-let centered = Css.style([Css.alignSelf(Css.center), Css.margin(Css.auto)]);
+let centered = Css.style([Css.alignSelf(Css.center), marginAuto]);
 let root =
   Css.style([
-    Css.display(Css.flexBox),
+    flexBox,
     Css.minHeight(Css.vh(100.0)),
     Css.flexDirection(Css.column),
+    Css.flexGrow(1),
   ]);
-let layoutContainer = Css.style([Css.display(Css.flexBox), Css.flex(1)]);
+let layoutContainer = Css.style([flexBox, Css.flex(1)]);
 let layout = Css.style([Css.flex(1), Css.justifyContent(Css.center)]);
 let mainPaper =
-  Css.style([Css.minHeight(Css.vh(80.0)), Css.padding(Css.px(8))]);
+  Css.style([
+    Css.width(Css.pct(100.0)),
+    Css.height(Css.vh(60.0)),
+    Css.padding(Css.px(8)),
+  ]);
 let form =
   Css.style([
-    Css.display(Css.flexBox),
-    Css.flexDirection(Css.column),
+    fullWidth,
+    Css.alignSelf(Css.center),
     Css.alignItems(Css.center),
+    Css.marginTop(Css.px(10)),
+    Css.marginBottom(Css.px(10)),
+    Css.marginLeft(Css.auto),
+    Css.marginRight(Css.auto),
   ]);
+let submitBtn =
+  Css.style([
+    Css.alignSelf(Css.center),
+    Css.important(Css.margin(Css.auto)),
+    Css.important(flexBox),
+    Css.marginTop(Css.em(1.0)),
+  ]);
+let textInput = Css.style([fullWidth]);
+let smallMarginTop =
+  Css.style([Css.important(Css.marginTop(Css.em(1.0)))]);
 
 let theme =
   createMuiTheme({
@@ -100,102 +123,135 @@ let make = _children => {
         <Header />
         <div className=layoutContainer>
           <main className=layout>
-            <MaterialUi.Grid xs=V12 sm=V8 md=V6 lg=V4 className=centered>
+            <MaterialUi.Grid
+              xs=V12 sm=V8 md=V6 lg=V4 className=centered direction=`Column>
               <MaterialUi.Paper className=mainPaper>
-                <MaterialUi.Typography
-                  variant=`Headline className=Styles.textCenter>
-                  {"What needs to be done?" |> ReasonReact.string}
-                </MaterialUi.Typography>
-                <form
-                  onSubmit={_event => self.send(AddTodo)}
-                  action="#"
-                  className=form>
-                  <MaterialUi.Typography className=Styles.textCenter>
-                    {"Title:" |> ReasonReact.string}
-                  </MaterialUi.Typography>
-                  <MaterialUi.Input
+                <MaterialUi.Grid xs=V12 container=true>
+                  <MaterialUi.Grid xs=V12 item=true>
+                    <MaterialUi.Typography
+                      variant=`Headline className=Styles.textCenter>
+                      {"What needs to be done?" |> ReasonReact.string}
+                    </MaterialUi.Typography>
+                  </MaterialUi.Grid>
+                  <MaterialUi.Grid
                     className=centered
-                    onChange={
-                      event =>
-                        self.send(
-                          ChangeTitle(ReactEvent.Form.target(event)##value),
-                        )
+                    justify=`Center
+                    xs=V12
+                    direction=`Column
+                    item=true>
+                    <form
+                      onSubmit={_event => self.send(AddTodo)}
+                      action="#"
+                      className=form>
+                      <MaterialUi.Grid
+                        justify=`Center
+                        xs=V11
+                        sm=V9
+                        md=V7
+                        lg=V5
+                        direction=`Column
+                        container=true
+                        className=centered>
+                        <MaterialUi.Grid xs=V12 justify=`Center item=true>
+                          <MaterialUi.Input
+                            placeholder="Title"
+                            className=textInput
+                            onChange={
+                              event =>
+                                self.send(
+                                  ChangeTitle(
+                                    ReactEvent.Form.target(event)##value,
+                                  ),
+                                )
+                            }
+                            value={`String(self.state.newTitle)}
+                          />
+                        </MaterialUi.Grid>
+                        <MaterialUi.Grid xs=V12 justify=`Center item=true>
+                          <MaterialUi.TextField
+                            multiline=true
+                            rows={`Int(4)}
+                            placeholder="Description (optional)"
+                            className=textInput
+                            onChange={
+                              event =>
+                                self.send(
+                                  ChangeDescription(
+                                    ReactEvent.Form.target(event)##value,
+                                  ),
+                                )
+                            }
+                            value={`String(self.state.newDescription)}
+                          />
+                        </MaterialUi.Grid>
+                        <MaterialUi.Grid
+                          xs=V12
+                          justify=`Center
+                          item=true
+                          className=smallMarginTop>
+                          <MaterialUi.Button
+                            type_="submit"
+                            color=`Primary
+                            variant=`Raised
+                            className=submitBtn>
+                            {"Add to-do" |> ReasonReact.string}
+                          </MaterialUi.Button>
+                        </MaterialUi.Grid>
+                      </MaterialUi.Grid>
+                    </form>
+                  </MaterialUi.Grid>
+                  {
+                    switch (
+                      List.length(
+                        List.filter(t => !t.complete, self.state.todos),
+                      )
+                    ) {
+                    | 0 => ReasonReact.null
+                    | _ => <h2> {"To do" |> ReasonReact.string} </h2>
                     }
-                    value={`String(self.state.newTitle)}
-                  />
-                  <MaterialUi.Typography className=Styles.textCenter>
-                    {"Description (optional):" |> ReasonReact.string}
-                  </MaterialUi.Typography>
-                  <MaterialUi.TextField
-                    onChange={
-                      event =>
-                        self.send(
-                          ChangeDescription(
-                            ReactEvent.Form.target(event)##value,
-                          ),
-                        )
+                  }
+                  <div>
+                    ...{
+                         List.map(
+                           t =>
+                             <TodoItem
+                               todo=t
+                               onChangeState={
+                                 _event => ChangeComplete(t) |> self.send
+                               }
+                             />,
+                           List.filter(t => !t.complete, self.state.todos),
+                         )
+                         |> Array.of_list
+                       }
+                  </div>
+                  {
+                    switch (
+                      List.length(
+                        List.filter(t => t.complete, self.state.todos),
+                      )
+                    ) {
+                    | 0 => ReasonReact.null
+                    | _ => <h2> {"Completed tasks" |> ReasonReact.string} </h2>
                     }
-                    value={`String(self.state.newDescription)}
-                  />
-                  <MaterialUi.Button
-                    type_="submit"
-                    color=`Primary
-                    variant=`Raised
-                    className=Styles.smBtn>
-                    {"Add to-do" |> ReasonReact.string}
-                  </MaterialUi.Button>
-                </form>
-                {
-                  switch (
-                    List.length(
-                      List.filter(t => !t.complete, self.state.todos),
-                    )
-                  ) {
-                  | 0 => ReasonReact.null
-                  | _ => <h2> {"To do" |> ReasonReact.string} </h2>
                   }
-                }
-                <ul>
-                  ...{
-                       List.map(
-                         t =>
-                           <TodoItem
-                             todo=t
-                             onChangeState={
-                               _event => ChangeComplete(t) |> self.send
-                             }
-                           />,
-                         List.filter(t => !t.complete, self.state.todos),
-                       )
-                       |> Array.of_list
-                     }
-                </ul>
-                {
-                  switch (
-                    List.length(
-                      List.filter(t => t.complete, self.state.todos),
-                    )
-                  ) {
-                  | 0 => ReasonReact.null
-                  | _ => <h2> {"Completed tasks" |> ReasonReact.string} </h2>
-                  }
-                }
-                <ul>
-                  ...{
-                       List.map(
-                         t =>
-                           <TodoItem
-                             todo=t
-                             onDelete={_event => RemoveTodo(t) |> self.send}
-                             onChangeState={
-                               _event => ChangeComplete(t) |> self.send
-                             }
-                           />,
-                         List.filter(t => t.complete, self.state.todos),
-                       )
-                       |> Array.of_list
-                     }
-                </ul>
+                  <div>
+                    ...{
+                         List.map(
+                           t =>
+                             <TodoItem
+                               todo=t
+                               onDelete={_event => RemoveTodo(t) |> self.send}
+                               onChangeState={
+                                 _event => ChangeComplete(t) |> self.send
+                               }
+                             />,
+                           List.filter(t => t.complete, self.state.todos),
+                         )
+                         |> Array.of_list
+                       }
+                  </div>
+                </MaterialUi.Grid>
               </MaterialUi.Paper>
             </MaterialUi.Grid>
           </main>

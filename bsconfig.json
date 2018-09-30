@@ -19,6 +19,11 @@
   ],
   "suffix": ".bs.js",
   "namespace": true,
-  "bs-dependencies": ["reason-react", "bs-css", "@jsiebern/bs-material-ui"],
+  "bs-dependencies": [
+    "reason-react",
+    "bs-css",
+    "@jsiebern/bs-material-ui",
+    "rationale"
+  ],
   "refmt": 3
 }

@@ -1,7 +1,10 @@
 let component = ReasonReact.statelessComponent("Header");
 
 let appBar =
-  Css.style([Css.position(Css.relative), Css.marginBottom(Css.em(1.0))]);
+  Css.style([
+    Css.relative |> Css.position,
+    1.0 |> Css.em |> Css.marginBottom,
+  ]);
 
 let make = _children => {
   ...component,

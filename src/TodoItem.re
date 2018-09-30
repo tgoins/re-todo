@@ -5,11 +5,13 @@ let component = ReasonReact.statelessComponent("TodoItem");
 let make = (~todo: todo, ~onChangeState=?, ~onDelete=?, _children) => {
   ...component,
   render: _self =>
-    <li>
+    <div>
       {
         switch (todo.complete) {
         | false =>
-          <button
+          <MaterialUi.Button
+            color=`Primary
+            variant=`Raised
             type_="button"
             onClick={
               switch (onChangeState) {
@@ -18,10 +20,12 @@ let make = (~todo: todo, ~onChangeState=?, ~onDelete=?, _children) => {
               }
             }>
             {"Mark as done" |> ReasonReact.string}
-          </button>
+          </MaterialUi.Button>
         | true =>
           <div>
-            <button
+            <MaterialUi.Button
+              color=`Primary
+              variant=`Raised
               type_="button"
               onClick={
                 switch (onDelete) {
@@ -30,9 +34,11 @@ let make = (~todo: todo, ~onChangeState=?, ~onDelete=?, _children) => {
                 }
               }>
               {"Delete" |> ReasonReact.string}
-            </button>
-            <button
+            </MaterialUi.Button>
+            <MaterialUi.Button
               type_="button"
+              color=`Primary
+              variant=`Raised
               onClick={
                 switch (onChangeState) {
                 | None => (_ => ())
@@ -40,11 +46,11 @@ let make = (~todo: todo, ~onChangeState=?, ~onDelete=?, _children) => {
                 }
               }>
               {"Set to-do" |> ReasonReact.string}
-            </button>
+            </MaterialUi.Button>
           </div>
         }
       }
       <h3> {todo.title |> ReasonReact.string} </h3>
       <p> {todo.description |> ReasonReact.string} </p>
-    </li>,
+    </div>,
 };

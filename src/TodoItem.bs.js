@@ -3,6 +3,7 @@
 
 var React = require("react");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
+var MaterialUi_Button = require("@jsiebern/bs-material-ui/src/MaterialUi_Button.bs.js");
 
 var component = ReasonReact.statelessComponent("TodoItem");
 
@@ -19,22 +20,13 @@ function make(todo, onChangeState, onDelete, _) {
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
               var match = todo[/* complete */2];
-              return React.createElement("li", undefined, match ? React.createElement("div", undefined, React.createElement("button", {
-                                    type: "button",
-                                    onClick: onDelete !== undefined ? onDelete : (function () {
-                                          return /* () */0;
-                                        })
-                                  }, "Delete"), React.createElement("button", {
-                                    type: "button",
-                                    onClick: onChangeState !== undefined ? onChangeState : (function () {
-                                          return /* () */0;
-                                        })
-                                  }, "Set to-do")) : React.createElement("button", {
-                                type: "button",
-                                onClick: onChangeState !== undefined ? onChangeState : (function () {
-                                      return /* () */0;
-                                    })
-                              }, "Mark as done"), React.createElement("h3", undefined, todo[/* title */0]), React.createElement("p", undefined, todo[/* description */1]));
+              return React.createElement("div", undefined, match ? React.createElement("div", undefined, ReasonReact.element(undefined, undefined, MaterialUi_Button.make(undefined, /* Primary */-791844958, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "button", /* Raised */-387916264, undefined, undefined, undefined, undefined, undefined, undefined, onDelete !== undefined ? onDelete : (function () {
+                                            return /* () */0;
+                                          }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Delete"])), ReasonReact.element(undefined, undefined, MaterialUi_Button.make(undefined, /* Primary */-791844958, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "button", /* Raised */-387916264, undefined, undefined, undefined, undefined, undefined, undefined, onChangeState !== undefined ? onChangeState : (function () {
+                                            return /* () */0;
+                                          }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Set to-do"]))) : ReasonReact.element(undefined, undefined, MaterialUi_Button.make(undefined, /* Primary */-791844958, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "button", /* Raised */-387916264, undefined, undefined, undefined, undefined, undefined, undefined, onChangeState !== undefined ? onChangeState : (function () {
+                                        return /* () */0;
+                                      }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Mark as done"])), React.createElement("h3", undefined, todo[/* title */0]), React.createElement("p", undefined, todo[/* description */1]));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],
