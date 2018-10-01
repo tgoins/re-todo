@@ -7,6 +7,7 @@ var ReasonReact = require("reason-react/src/ReasonReact.js");
 var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var MaterialUIIcons = require("bs-material-ui-icons/src/MaterialUIIcons.js");
 var MaterialUi_Card = require("@jsiebern/bs-material-ui/src/MaterialUi_Card.bs.js");
+var MaterialUi_Grid = require("@jsiebern/bs-material-ui/src/MaterialUi_Grid.bs.js");
 var MaterialUi_CardHeader = require("@jsiebern/bs-material-ui/src/MaterialUi_CardHeader.bs.js");
 var MaterialUi_IconButton = require("@jsiebern/bs-material-ui/src/MaterialUi_IconButton.bs.js");
 var MaterialUi_Typography = require("@jsiebern/bs-material-ui/src/MaterialUi_Typography.bs.js");
@@ -16,6 +17,22 @@ var component = ReasonReact.statelessComponent("TodoItem");
 
 var todoItem = Css.style(/* :: */[
       Css.width(Css.pct(100.0)),
+      /* :: */[
+        Css.flexDirection(Css.column),
+        /* [] */0
+      ]
+    ]);
+
+var todoItemContainer = Css.style(/* :: */[
+      Css.important(Css.marginTop(Css.em(1.0))),
+      /* :: */[
+        Css.important(Css.marginBottom(Css.em(1.0))),
+        /* [] */0
+      ]
+    ]);
+
+var cardActions = Css.style(/* :: */[
+      Css.justifyContent(Css.flexEnd),
       /* [] */0
     ]);
 
@@ -32,17 +49,17 @@ function make(todo, onChangeState, onDelete, _) {
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
               var match = todo[/* complete */2];
-              return ReasonReact.element(undefined, undefined, MaterialUi_Card.make(todoItem, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[
-                              ReasonReact.element(undefined, undefined, MaterialUi_CardHeader.make(undefined, undefined, undefined, undefined, undefined, Js_primitive.some(todo[/* title */0]), undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* Title */594052472, undefined, undefined, /* array */[todo[/* title */0]]))])),
-                              ReasonReact.element(undefined, undefined, MaterialUi_CardActions.make(undefined, undefined, undefined, undefined, /* array */[match ? React.createElement("div", undefined, ReasonReact.element(undefined, undefined, MaterialUi_IconButton.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, onDelete !== undefined ? onDelete : (function () {
-                                                            return /* () */0;
-                                                          }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUIIcons.Delete[/* make */0](/* array */[]))])), ReasonReact.element(undefined, undefined, MaterialUi_IconButton.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, onChangeState !== undefined ? onChangeState : (function () {
-                                                            return /* () */0;
-                                                          }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUIIcons.Undo[/* make */0](/* array */[]))]))) : React.createElement("div", undefined, ReasonReact.element(undefined, undefined, MaterialUi_IconButton.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, onChangeState !== undefined ? onChangeState : (function () {
-                                                            return /* () */0;
-                                                          }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUIIcons.Check[/* make */0](/* array */[]))])))])),
-                              React.createElement("p", undefined, todo[/* description */1])
-                            ]));
+              return ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, todoItemContainer, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, /* V16 */2, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Card.make(todoItem, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[
+                                                  ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V8 */7, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_CardHeader.make(undefined, undefined, undefined, undefined, undefined, Js_primitive.some(todo[/* title */0]), undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* Title */594052472, undefined, undefined, /* array */[todo[/* title */0]]))]))])),
+                                                  ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V4 */3, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_CardActions.make(cardActions, undefined, undefined, undefined, /* array */[match ? React.createElement("div", undefined, ReasonReact.element(undefined, undefined, MaterialUi_IconButton.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, onDelete !== undefined ? onDelete : (function () {
+                                                                                          return /* () */0;
+                                                                                        }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUIIcons.Delete[/* make */0](/* array */[]))])), ReasonReact.element(undefined, undefined, MaterialUi_IconButton.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, onChangeState !== undefined ? onChangeState : (function () {
+                                                                                          return /* () */0;
+                                                                                        }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUIIcons.Undo[/* make */0](/* array */[]))]))) : React.createElement("div", undefined, ReasonReact.element(undefined, undefined, MaterialUi_IconButton.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, onChangeState !== undefined ? onChangeState : (function () {
+                                                                                          return /* () */0;
+                                                                                        }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUIIcons.Check[/* make */0](/* array */[]))])))]))])),
+                                                  ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[React.createElement("p", undefined, todo[/* description */1])]))
+                                                ]))]))]));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],
@@ -53,5 +70,7 @@ function make(todo, onChangeState, onDelete, _) {
 
 exports.component = component;
 exports.todoItem = todoItem;
+exports.todoItemContainer = todoItemContainer;
+exports.cardActions = cardActions;
 exports.make = make;
 /* component Not a pure module */

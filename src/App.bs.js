@@ -30,6 +30,14 @@ var flexBox = Css.display(Css.flexBox);
 
 var marginAuto = Css.margin(Css.auto);
 
+var submitBtnContainer = Css.style(/* :: */[
+      Css.important(Css.marginTop(Css.em(1.0))),
+      /* :: */[
+        Css.important(Css.margin(Css.auto)),
+        /* [] */0
+      ]
+    ]);
+
 var centered = Css.style(/* :: */[
       Css.alignSelf(Css.center),
       /* :: */[
@@ -71,10 +79,13 @@ var layout = Css.style(/* :: */[
 var mainPaper = Css.style(/* :: */[
       Css.width(Css.pct(100.0)),
       /* :: */[
-        Css.height(Css.vh(60.0)),
+        Css.minHeight(Css.vh(60.0)),
         /* :: */[
           Css.padding(Css.px(8)),
-          /* [] */0
+          /* :: */[
+            Css.margin(Css.em(1.0)),
+            /* [] */0
+          ]
         ]
       ]
     ]);
@@ -107,9 +118,9 @@ var submitBtn = Css.style(/* :: */[
       /* :: */[
         Css.important(Css.margin(Css.auto)),
         /* :: */[
-          Css.important(flexBox),
+          Css.marginTop(Css.em(1.0)),
           /* :: */[
-            Css.marginTop(Css.em(1.0)),
+            Css.important(Css.margin(Css.auto)),
             /* [] */0
           ]
         ]
@@ -195,18 +206,18 @@ function make() {
                                                                                                                     -976970511,
                                                                                                                     self[/* state */1][/* newDescription */2]
                                                                                                                   ], undefined, /* array */[]))])),
-                                                                                                ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, smallMarginTop, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Button.make(submitBtn, /* Primary */-791844958, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "submit", /* Raised */-387916264, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Add to-do"]))]))
+                                                                                                ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, submitBtnContainer, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Button.make(submitBtn, /* Primary */-791844958, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "submit", /* Raised */-387916264, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Add to-do"]))]))
                                                                                               ])))])),
-                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[match !== 0 ? React.createElement("h2", undefined, "To do") : null])),
-                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, $$Array.of_list(List.map((function (t) {
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[match !== 0 ? React.createElement("h2", undefined, "To do") : null])),
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, /* V24 */3, undefined, undefined, /* V12 */11, undefined, undefined, undefined, $$Array.of_list(List.map((function (t) {
                                                                                             return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
                                                                                                               return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
                                                                                                             }), undefined, /* array */[]));
                                                                                           }), List.filter((function (t) {
                                                                                                   return !t[/* complete */2];
                                                                                                 }))(self[/* state */1][/* todos */0]))))),
-                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[match$1 !== 0 ? React.createElement("h2", undefined, "Completed tasks") : null])),
-                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, $$Array.of_list(List.map((function (t) {
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[match$1 !== 0 ? React.createElement("h2", undefined, "Completed tasks") : null])),
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, $$Array.of_list(List.map((function (t) {
                                                                                             return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
                                                                                                               return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
                                                                                                             }), (function () {
@@ -302,6 +313,7 @@ var $$default = ReasonReact.wrapReasonForJs(component, (function () {
 exports.fullWidth = fullWidth;
 exports.flexBox = flexBox;
 exports.marginAuto = marginAuto;
+exports.submitBtnContainer = submitBtnContainer;
 exports.centered = centered;
 exports.root = root;
 exports.layoutContainer = layoutContainer;

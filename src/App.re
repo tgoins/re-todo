@@ -12,6 +12,11 @@ type state = {
 let fullWidth = Css.width(Css.pct(100.0));
 let flexBox = Css.display(Css.flexBox);
 let marginAuto = Css.margin(Css.auto);
+let submitBtnContainer =
+  Css.style([
+    Css.important(Css.marginTop(Css.em(1.0))),
+    Css.important(Css.margin(Css.auto)),
+  ]);
 
 type action =
   | AddTodo
@@ -33,8 +38,9 @@ let layout = Css.style([Css.flex(1), Css.justifyContent(Css.center)]);
 let mainPaper =
   Css.style([
     Css.width(Css.pct(100.0)),
-    Css.height(Css.vh(60.0)),
+    Css.minHeight(Css.vh(60.0)),
     Css.padding(Css.px(8)),
+    Css.margin(Css.em(1.0)),
   ]);
 let form =
   Css.style([
@@ -50,8 +56,8 @@ let submitBtn =
   Css.style([
     Css.alignSelf(Css.center),
     Css.important(Css.margin(Css.auto)),
-    Css.important(flexBox),
     Css.marginTop(Css.em(1.0)),
+    Css.important(Css.margin(Css.auto)),
   ]);
 let textInput = Css.style([fullWidth]);
 let smallMarginTop =
@@ -188,7 +194,7 @@ let make = _children => {
                           xs=V12
                           justify=`Center
                           item=true
-                          className=smallMarginTop>
+                          className=submitBtnContainer>
                           <MaterialUi.Button
                             type_="submit"
                             color=`Primary
@@ -200,7 +206,7 @@ let make = _children => {
                       </MaterialUi.Grid>
                     </form>
                   </MaterialUi.Grid>
-                  <MaterialUi.Grid>
+                  <MaterialUi.Grid xs=V12>
                     {
                       switch (
                         List.length(
@@ -212,7 +218,8 @@ let make = _children => {
                       }
                     }
                   </MaterialUi.Grid>
-                  <MaterialUi.Grid>
+                  <MaterialUi.Grid
+                    xs=V12 item=true spacing=V24 justify=`Center>
                     ...{
                          List.map(
                            t =>
@@ -227,7 +234,7 @@ let make = _children => {
                          |> Array.of_list
                        }
                   </MaterialUi.Grid>
-                  <MaterialUi.Grid>
+                  <MaterialUi.Grid xs=V12>
                     {
                       switch (
                         List.length(
@@ -240,7 +247,7 @@ let make = _children => {
                       }
                     }
                   </MaterialUi.Grid>
-                  <MaterialUi.Grid>
+                  <MaterialUi.Grid xs=V12>
                     ...{
                          List.map(
                            t =>
