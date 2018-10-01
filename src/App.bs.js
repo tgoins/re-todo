@@ -8,7 +8,6 @@ var Block = require("bs-platform/lib/js/block.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var Caml_obj = require("bs-platform/lib/js/caml_obj.js");
-var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
 var MaterialUi_Grid = require("@jsiebern/bs-material-ui/src/MaterialUi_Grid.bs.js");
 var MaterialUi_Input = require("@jsiebern/bs-material-ui/src/MaterialUi_Input.bs.js");
@@ -198,24 +197,24 @@ function make() {
                                                                                                                   ], undefined, /* array */[]))])),
                                                                                                 ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, smallMarginTop, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Button.make(submitBtn, /* Primary */-791844958, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "submit", /* Raised */-387916264, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Add to-do"]))]))
                                                                                               ])))])),
-                                                                        match !== 0 ? React.createElement("h2", undefined, "To do") : null,
-                                                                        ReactDOMRe.createElementVariadic("div", undefined, $$Array.of_list(List.map((function (t) {
-                                                                                        return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
-                                                                                                          return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
-                                                                                                        }), undefined, /* array */[]));
-                                                                                      }), List.filter((function (t) {
-                                                                                              return !t[/* complete */2];
-                                                                                            }))(self[/* state */1][/* todos */0])))),
-                                                                        match$1 !== 0 ? React.createElement("h2", undefined, "Completed tasks") : null,
-                                                                        ReactDOMRe.createElementVariadic("div", undefined, $$Array.of_list(List.map((function (t) {
-                                                                                        return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
-                                                                                                          return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
-                                                                                                        }), (function () {
-                                                                                                          return Curry._1(self[/* send */3], /* RemoveTodo */Block.__(3, [t]));
-                                                                                                        }), /* array */[]));
-                                                                                      }), List.filter((function (t) {
-                                                                                              return t[/* complete */2];
-                                                                                            }))(self[/* state */1][/* todos */0]))))
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[match !== 0 ? React.createElement("h2", undefined, "To do") : null])),
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, $$Array.of_list(List.map((function (t) {
+                                                                                            return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
+                                                                                                              return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
+                                                                                                            }), undefined, /* array */[]));
+                                                                                          }), List.filter((function (t) {
+                                                                                                  return !t[/* complete */2];
+                                                                                                }))(self[/* state */1][/* todos */0]))))),
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[match$1 !== 0 ? React.createElement("h2", undefined, "Completed tasks") : null])),
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, $$Array.of_list(List.map((function (t) {
+                                                                                            return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
+                                                                                                              return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
+                                                                                                            }), (function () {
+                                                                                                              return Curry._1(self[/* send */3], /* RemoveTodo */Block.__(3, [t]));
+                                                                                                            }), /* array */[]));
+                                                                                          }), List.filter((function (t) {
+                                                                                                  return t[/* complete */2];
+                                                                                                }))(self[/* state */1][/* todos */0])))))
                                                                       ]))]))])))), ReasonReact.element(undefined, undefined, Footer$ReactTemplate.make(/* array */[])))]));
             }),
           /* initialState */(function () {

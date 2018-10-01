@@ -23,7 +23,8 @@
     "reason-react",
     "bs-css",
     "@jsiebern/bs-material-ui",
-    "rationale"
+    "rationale",
+    "bs-material-ui-icons"
   ],
   "refmt": 3
 }

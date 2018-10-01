@@ -200,17 +200,19 @@ let make = _children => {
                       </MaterialUi.Grid>
                     </form>
                   </MaterialUi.Grid>
-                  {
-                    switch (
-                      List.length(
-                        List.filter(t => !t.complete, self.state.todos),
-                      )
-                    ) {
-                    | 0 => ReasonReact.null
-                    | _ => <h2> {"To do" |> ReasonReact.string} </h2>
+                  <MaterialUi.Grid>
+                    {
+                      switch (
+                        List.length(
+                          List.filter(t => !t.complete, self.state.todos),
+                        )
+                      ) {
+                      | 0 => ReasonReact.null
+                      | _ => <h2> {"To do" |> ReasonReact.string} </h2>
+                      }
                     }
-                  }
-                  <div>
+                  </MaterialUi.Grid>
+                  <MaterialUi.Grid>
                     ...{
                          List.map(
                            t =>
@@ -224,18 +226,21 @@ let make = _children => {
                          )
                          |> Array.of_list
                        }
-                  </div>
-                  {
-                    switch (
-                      List.length(
-                        List.filter(t => t.complete, self.state.todos),
-                      )
-                    ) {
-                    | 0 => ReasonReact.null
-                    | _ => <h2> {"Completed tasks" |> ReasonReact.string} </h2>
+                  </MaterialUi.Grid>
+                  <MaterialUi.Grid>
+                    {
+                      switch (
+                        List.length(
+                          List.filter(t => t.complete, self.state.todos),
+                        )
+                      ) {
+                      | 0 => ReasonReact.null
+                      | _ =>
+                        <h2> {"Completed tasks" |> ReasonReact.string} </h2>
+                      }
                     }
-                  }
-                  <div>
+                  </MaterialUi.Grid>
+                  <MaterialUi.Grid>
                     ...{
                          List.map(
                            t =>
@@ -250,7 +255,7 @@ let make = _children => {
                          )
                          |> Array.of_list
                        }
-                  </div>
+                  </MaterialUi.Grid>
                 </MaterialUi.Grid>
               </MaterialUi.Paper>
             </MaterialUi.Grid>

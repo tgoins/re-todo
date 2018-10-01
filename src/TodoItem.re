@@ -2,55 +2,56 @@ open Types;
 
 let component = ReasonReact.statelessComponent("TodoItem");
 
+let todoItem = Css.style([Css.width(Css.pct(100.0))]);
+
 let make = (~todo: todo, ~onChangeState=?, ~onDelete=?, _children) => {
   ...component,
   render: _self =>
-    <div>
-      {
-        switch (todo.complete) {
-        | false =>
-          <MaterialUi.Button
-            color=`Primary
-            variant=`Raised
-            type_="button"
-            onClick={
-              switch (onChangeState) {
-              | None => (_ => ())
-              | Some(event) => event
-              }
-            }>
-            {"Mark as done" |> ReasonReact.string}
-          </MaterialUi.Button>
-        | true =>
-          <div>
-            <MaterialUi.Button
-              color=`Primary
-              variant=`Raised
-              type_="button"
-              onClick={
-                switch (onDelete) {
-                | None => (_ => ())
-                | Some(event) => event
-                }
-              }>
-              {"Delete" |> ReasonReact.string}
-            </MaterialUi.Button>
-            <MaterialUi.Button
-              type_="button"
-              color=`Primary
-              variant=`Raised
-              onClick={
-                switch (onChangeState) {
-                | None => (_ => ())
-                | Some(event) => event
-                }
-              }>
-              {"Set to-do" |> ReasonReact.string}
-            </MaterialUi.Button>
-          </div>
+    <MaterialUi.Card className=todoItem>
+      <MaterialUi.CardHeader title={todo.title |> ReasonReact.string}>
+        <MaterialUi.Typography variant=`Title>
+          {todo.title |> ReasonReact.string}
+        </MaterialUi.Typography>
+      </MaterialUi.CardHeader>
+      <MaterialUi.CardActions>
+        {
+          switch (todo.complete) {
+          | false =>
+            <div>
+              <MaterialUi.IconButton
+                onClick={
+                  switch (onChangeState) {
+                  | None => (_ => ())
+                  | Some(event) => event
+                  }
+                }>
+                <MaterialUIIcons.Check />
+              </MaterialUi.IconButton>
+            </div>
+          | true =>
+            <div>
+              <MaterialUi.IconButton
+                onClick={
+                  switch (onDelete) {
+                  | None => (_ => ())
+                  | Some(event) => event
+                  }
+                }>
+                <MaterialUIIcons.Delete />
+              </MaterialUi.IconButton>
+              <MaterialUi.IconButton
+                onClick={
+                  switch (onChangeState) {
+                  | None => (_ => ())
+                  | Some(event) => event
+                  }
+                }>
+                <MaterialUIIcons.Undo />
+              </MaterialUi.IconButton>
+            </div>
+          }
         }
-      }
-      <h3> {todo.title |> ReasonReact.string} </h3>
+      </MaterialUi.CardActions>
       <p> {todo.description |> ReasonReact.string} </p>
-    </div>,
+    </MaterialUi.Card>,
 };

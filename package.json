@@ -17,7 +17,9 @@
   "dependencies": {
     "@jsiebern/bs-material-ui": "^0.3.3",
     "@material-ui/core": "^3.1.1",
+    "@material-ui/icons": "^3.0.1",
     "bs-css": "^7.2.0",
+    "bs-material-ui-icons": "https://github.com/tannerz28/bs-material-ui-icons",
     "rationale": "^0.1.7",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
