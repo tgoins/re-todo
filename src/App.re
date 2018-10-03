@@ -58,6 +58,7 @@ let submitBtn =
     Css.important(Css.margin(Css.auto)),
     Css.marginTop(Css.em(1.0)),
     Css.important(Css.margin(Css.auto)),
+    Css.important(Css.color(Css.white)),
   ]);
 let textInput = Css.style([fullWidth]);
 let smallMarginTop =
@@ -70,7 +71,7 @@ let theme =
         "main": MaterialUi.Colors.Blue.c500,
       },
       "secondary": {
-        "main": MaterialUi.Colors.Red.c500,
+        "main": MaterialUi.Colors.Green.c500,
       },
     },
   });
@@ -197,16 +198,16 @@ let make = _children => {
                           className=submitBtnContainer>
                           <MaterialUi.Button
                             type_="submit"
-                            color=`Primary
-                            variant=`Raised
+                            color=`Secondary
+                            variant=`Fab
                             className=submitBtn>
-                            {"Add to-do" |> ReasonReact.string}
+                            <MaterialUIIcons.Add />
                           </MaterialUi.Button>
                         </MaterialUi.Grid>
                       </MaterialUi.Grid>
                     </form>
                   </MaterialUi.Grid>
-                  <MaterialUi.Grid xs=V12>
+                  <MaterialUi.Grid xs=V12 spacing=V24>
                     {
                       switch (
                         List.length(
@@ -214,27 +215,31 @@ let make = _children => {
                         )
                       ) {
                       | 0 => ReasonReact.null
-                      | _ => <h2> {"To do" |> ReasonReact.string} </h2>
+                      | _ =>
+                        <MaterialUi.Typography variant=`Title>
+                          {"To do" |> ReasonReact.string}
+                        </MaterialUi.Typography>
                       }
                     }
                   </MaterialUi.Grid>
-                  <MaterialUi.Grid
-                    xs=V12 item=true spacing=V24 justify=`Center>
-                    ...{
-                         List.map(
-                           t =>
-                             <TodoItem
-                               todo=t
-                               onChangeState={
-                                 _event => ChangeComplete(t) |> self.send
-                               }
-                             />,
-                           List.filter(t => !t.complete, self.state.todos),
-                         )
-                         |> Array.of_list
-                       }
+                  <MaterialUi.Grid xs=V12 item=true justify=`Center>
+                    <MaterialUi.Grid container=true spacing=V8>
+                      ...{
+                           List.map(
+                             t =>
+                               <TodoItem
+                                 todo=t
+                                 onChangeState={
+                                   _event => ChangeComplete(t) |> self.send
+                                 }
+                               />,
+                             List.filter(t => !t.complete, self.state.todos),
+                           )
+                           |> Array.of_list
+                         }
+                    </MaterialUi.Grid>
                   </MaterialUi.Grid>
-                  <MaterialUi.Grid xs=V12>
+                  <MaterialUi.Grid xs=V12 spacing=V24>
                     {
                       switch (
                         List.length(
@@ -243,25 +248,31 @@ let make = _children => {
                       ) {
                       | 0 => ReasonReact.null
                       | _ =>
-                        <h2> {"Completed tasks" |> ReasonReact.string} </h2>
+                        <MaterialUi.Typography variant=`Title>
+                          {"Completed tasks" |> ReasonReact.string}
+                        </MaterialUi.Typography>
                       }
                     }
                   </MaterialUi.Grid>
-                  <MaterialUi.Grid xs=V12>
-                    ...{
-                         List.map(
-                           t =>
-                             <TodoItem
-                               todo=t
-                               onDelete={_event => RemoveTodo(t) |> self.send}
-                               onChangeState={
-                                 _event => ChangeComplete(t) |> self.send
-                               }
-                             />,
-                           List.filter(t => t.complete, self.state.todos),
-                         )
-                         |> Array.of_list
-                       }
+                  <MaterialUi.Grid xs=V12 item=true justify=`Center>
+                    <MaterialUi.Grid container=true spacing=V8>
+                      ...{
+                           List.map(
+                             t =>
+                               <TodoItem
+                                 todo=t
+                                 onDelete={
+                                   _event => RemoveTodo(t) |> self.send
+                                 }
+                                 onChangeState={
+                                   _event => ChangeComplete(t) |> self.send
+                                 }
+                               />,
+                             List.filter(t => t.complete, self.state.todos),
+                           )
+                           |> Array.of_list
+                         }
+                    </MaterialUi.Grid>
                   </MaterialUi.Grid>
                 </MaterialUi.Grid>
               </MaterialUi.Paper>

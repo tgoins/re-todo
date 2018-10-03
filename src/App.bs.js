@@ -9,17 +9,18 @@ var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var Caml_obj = require("bs-platform/lib/js/caml_obj.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
+var MaterialUIIcons = require("bs-material-ui-icons/src/MaterialUIIcons.js");
 var MaterialUi_Grid = require("@jsiebern/bs-material-ui/src/MaterialUi_Grid.bs.js");
 var MaterialUi_Input = require("@jsiebern/bs-material-ui/src/MaterialUi_Input.bs.js");
 var MaterialUi_Paper = require("@jsiebern/bs-material-ui/src/MaterialUi_Paper.bs.js");
 var MaterialUi_Button = require("@jsiebern/bs-material-ui/src/MaterialUi_Button.bs.js");
 var Footer$ReactTemplate = require("./Footer.bs.js");
 var Header$ReactTemplate = require("./Header.bs.js");
-var MaterialUi_Color_Red = require("@jsiebern/bs-material-ui/src/MaterialUi_Color_Red.bs.js");
 var MaterialUi_TextField = require("@jsiebern/bs-material-ui/src/MaterialUi_TextField.bs.js");
 var Styles$ReactTemplate = require("./styles/Styles.bs.js");
 var MaterialUi_Color_Blue = require("@jsiebern/bs-material-ui/src/MaterialUi_Color_Blue.bs.js");
 var MaterialUi_Typography = require("@jsiebern/bs-material-ui/src/MaterialUi_Typography.bs.js");
+var MaterialUi_Color_Green = require("@jsiebern/bs-material-ui/src/MaterialUi_Color_Green.bs.js");
 var TodoItem$ReactTemplate = require("./TodoItem.bs.js");
 var Styles = require("@material-ui/core/styles");
 var MaterialUi_MuiThemeProvider = require("@jsiebern/bs-material-ui/src/MaterialUi_MuiThemeProvider.bs.js");
@@ -121,7 +122,10 @@ var submitBtn = Css.style(/* :: */[
           Css.marginTop(Css.em(1.0)),
           /* :: */[
             Css.important(Css.margin(Css.auto)),
-            /* [] */0
+            /* :: */[
+              Css.important(Css.color(Css.white)),
+              /* [] */0
+            ]
           ]
         ]
       ]
@@ -143,7 +147,7 @@ var theme = Styles.createMuiTheme({
           main: MaterialUi_Color_Blue.c500
         },
         secondary: {
-          main: MaterialUi_Color_Red.c500
+          main: MaterialUi_Color_Green.c500
         }
       }
     });
@@ -206,26 +210,26 @@ function make() {
                                                                                                                     -976970511,
                                                                                                                     self[/* state */1][/* newDescription */2]
                                                                                                                   ], undefined, /* array */[]))])),
-                                                                                                ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, submitBtnContainer, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Button.make(submitBtn, /* Primary */-791844958, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "submit", /* Raised */-387916264, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Add to-do"]))]))
+                                                                                                ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, submitBtnContainer, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Button.make(submitBtn, /* Secondary */67972948, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "submit", /* Fab */3502759, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUIIcons.Add[/* make */0](/* array */[]))]))]))
                                                                                               ])))])),
-                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[match !== 0 ? React.createElement("h2", undefined, "To do") : null])),
-                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, /* V24 */3, undefined, undefined, /* V12 */11, undefined, undefined, undefined, $$Array.of_list(List.map((function (t) {
-                                                                                            return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
-                                                                                                              return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
-                                                                                                            }), undefined, /* array */[]));
-                                                                                          }), List.filter((function (t) {
-                                                                                                  return !t[/* complete */2];
-                                                                                                }))(self[/* state */1][/* todos */0]))))),
-                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[match$1 !== 0 ? React.createElement("h2", undefined, "Completed tasks") : null])),
-                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, $$Array.of_list(List.map((function (t) {
-                                                                                            return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
-                                                                                                              return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
-                                                                                                            }), (function () {
-                                                                                                              return Curry._1(self[/* send */3], /* RemoveTodo */Block.__(3, [t]));
-                                                                                                            }), /* array */[]));
-                                                                                          }), List.filter((function (t) {
-                                                                                                  return t[/* complete */2];
-                                                                                                }))(self[/* state */1][/* todos */0])))))
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V24 */3, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[match !== 0 ? ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* Title */594052472, undefined, undefined, /* array */["To do"])) : null])),
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined, undefined, undefined, /* V8 */1, undefined, undefined, undefined, undefined, undefined, undefined, $$Array.of_list(List.map((function (t) {
+                                                                                                      return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
+                                                                                                                        return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
+                                                                                                                      }), undefined, /* array */[]));
+                                                                                                    }), List.filter((function (t) {
+                                                                                                            return !t[/* complete */2];
+                                                                                                          }))(self[/* state */1][/* todos */0])))))])),
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V24 */3, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[match$1 !== 0 ? ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* Title */594052472, undefined, undefined, /* array */["Completed tasks"])) : null])),
+                                                                        ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined, undefined, undefined, /* V8 */1, undefined, undefined, undefined, undefined, undefined, undefined, $$Array.of_list(List.map((function (t) {
+                                                                                                      return ReasonReact.element(undefined, undefined, TodoItem$ReactTemplate.make(t, (function () {
+                                                                                                                        return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
+                                                                                                                      }), (function () {
+                                                                                                                        return Curry._1(self[/* send */3], /* RemoveTodo */Block.__(3, [t]));
+                                                                                                                      }), /* array */[]));
+                                                                                                    }), List.filter((function (t) {
+                                                                                                            return t[/* complete */2];
+                                                                                                          }))(self[/* state */1][/* todos */0])))))]))
                                                                       ]))]))])))), ReasonReact.element(undefined, undefined, Footer$ReactTemplate.make(/* array */[])))]));
             }),
           /* initialState */(function () {
