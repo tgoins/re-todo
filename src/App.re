@@ -7,7 +7,15 @@ type state = {
   todos: list(todo),
   newTitle: string,
   newDescription: string,
+  lastId: int,
 };
+
+type action =
+  | AddTodo
+  | ChangeTitle(string)
+  | ChangeDescription(string)
+  | ChangeComplete(todo)
+  | RemoveTodo(todo);
 
 let fullWidth = Css.width(Css.pct(100.0));
 let flexBox = Css.display(Css.flexBox);
@@ -17,14 +25,6 @@ let submitBtnContainer =
     Css.important(Css.marginTop(Css.em(1.0))),
     Css.important(Css.margin(Css.auto)),
   ]);
-
-type action =
-  | AddTodo
-  | ChangeTitle(string)
-  | ChangeDescription(string)
-  | ChangeComplete(todo)
-  | RemoveTodo(todo);
-
 let centered = Css.style([Css.alignSelf(Css.center), marginAuto]);
 let root =
   Css.style([
@@ -78,11 +78,14 @@ let theme =
 
 let component = ReasonReact.reducerComponent("App");
 
-let handleClick = (_event, _self) => Js.log("clicked!");
-
 let make = _children => {
   ...component,
-  initialState: () => {todos: [], newTitle: "", newDescription: ""},
+  initialState: () => {
+    todos: [],
+    newTitle: "",
+    newDescription: "",
+    lastId: 0,
+  },
   reducer: (action, state) =>
     switch (action) {
     | AddTodo =>
@@ -95,6 +98,7 @@ let make = _children => {
               state.todos,
               [
                 {
+                  id: state.lastId + 1,
                   title: state.newTitle,
                   description: state.newDescription,
                   complete: false,
@@ -103,6 +107,7 @@ let make = _children => {
             ),
           newDescription: "",
           newTitle: "",
+          lastId: state.lastId + 1,
         })
       }
     | ChangeComplete(todo) =>
@@ -111,7 +116,7 @@ let make = _children => {
         ...state,
         todos:
           List.append(
-            List.filter(t => t != todo, state.todos),
+            List.filter(t => t.id != todo.id, state.todos),
             [updatedTodo],
           ),
       });
@@ -121,7 +126,7 @@ let make = _children => {
     | RemoveTodo(todo) =>
       ReasonReact.Update({
         ...state,
-        todos: List.filter(t => t != todo, state.todos),
+        todos: List.filter(t => t.id != todo.id, state.todos),
       })
     },
   render: self =>

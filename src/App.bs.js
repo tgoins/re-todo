@@ -7,7 +7,6 @@ var $$Array = require("bs-platform/lib/js/array.js");
 var Block = require("bs-platform/lib/js/block.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
-var Caml_obj = require("bs-platform/lib/js/caml_obj.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
 var MaterialUIIcons = require("bs-material-ui-icons/src/MaterialUIIcons.js");
 var MaterialUi_Grid = require("@jsiebern/bs-material-ui/src/MaterialUi_Grid.bs.js");
@@ -154,11 +153,6 @@ var theme = Styles.createMuiTheme({
 
 var component = ReasonReact.reducerComponent("App");
 
-function handleClick(_, _$1) {
-  console.log("clicked!");
-  return /* () */0;
-}
-
 function make() {
   return /* record */[
           /* debugName */component[/* debugName */0],
@@ -172,10 +166,10 @@ function make() {
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function (self) {
               var match = List.length(List.filter((function (t) {
-                            return !t[/* complete */2];
+                            return !t[/* complete */3];
                           }))(self[/* state */1][/* todos */0]));
               var match$1 = List.length(List.filter((function (t) {
-                            return t[/* complete */2];
+                            return t[/* complete */3];
                           }))(self[/* state */1][/* todos */0]));
               return ReasonReact.element(undefined, undefined, MaterialUi_MuiThemeProvider.make(undefined, undefined, /* `ObjectGeneric */[
                               -317959944,
@@ -218,7 +212,7 @@ function make() {
                                                                                                                         return Curry._1(self[/* send */3], /* ChangeComplete */Block.__(2, [t]));
                                                                                                                       }), undefined, /* array */[]));
                                                                                                     }), List.filter((function (t) {
-                                                                                                            return !t[/* complete */2];
+                                                                                                            return !t[/* complete */3];
                                                                                                           }))(self[/* state */1][/* todos */0])))))])),
                                                                         ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V24 */3, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[match$1 !== 0 ? ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* Title */594052472, undefined, undefined, /* array */["Completed tasks"])) : null])),
                                                                         ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, true, /* Center */980392437, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined, undefined, undefined, /* V8 */1, undefined, undefined, undefined, undefined, undefined, undefined, $$Array.of_list(List.map((function (t) {
@@ -228,7 +222,7 @@ function make() {
                                                                                                                         return Curry._1(self[/* send */3], /* RemoveTodo */Block.__(3, [t]));
                                                                                                                       }), /* array */[]));
                                                                                                     }), List.filter((function (t) {
-                                                                                                            return t[/* complete */2];
+                                                                                                            return t[/* complete */3];
                                                                                                           }))(self[/* state */1][/* todos */0])))))]))
                                                                       ]))]))])))), ReasonReact.element(undefined, undefined, Footer$ReactTemplate.make(/* array */[])))]));
             }),
@@ -236,7 +230,8 @@ function make() {
               return /* record */[
                       /* todos : [] */0,
                       /* newTitle */"",
-                      /* newDescription */""
+                      /* newDescription */"",
+                      /* lastId */0
                     ];
             }),
           /* retainedProps */component[/* retainedProps */11],
@@ -249,6 +244,7 @@ function make() {
                   return /* Update */Block.__(0, [/* record */[
                               /* todos */List.append(state[/* todos */0], /* :: */[
                                     /* record */[
+                                      /* id */state[/* lastId */3] + 1 | 0,
                                       /* title */state[/* newTitle */1],
                                       /* description */state[/* newDescription */2],
                                       /* complete */false
@@ -256,7 +252,8 @@ function make() {
                                     /* [] */0
                                   ]),
                               /* newTitle */"",
-                              /* newDescription */""
+                              /* newDescription */"",
+                              /* lastId */state[/* lastId */3] + 1 | 0
                             ]]);
                 }
               } else {
@@ -265,42 +262,48 @@ function make() {
                       return /* Update */Block.__(0, [/* record */[
                                   /* todos */state[/* todos */0],
                                   /* newTitle */action[0],
-                                  /* newDescription */state[/* newDescription */2]
+                                  /* newDescription */state[/* newDescription */2],
+                                  /* lastId */state[/* lastId */3]
                                 ]]);
                   case 1 : 
                       return /* Update */Block.__(0, [/* record */[
                                   /* todos */state[/* todos */0],
                                   /* newTitle */state[/* newTitle */1],
-                                  /* newDescription */action[0]
+                                  /* newDescription */action[0],
+                                  /* lastId */state[/* lastId */3]
                                 ]]);
                   case 2 : 
                       var todo = action[0];
-                      var updatedTodo_000 = /* title */todo[/* title */0];
-                      var updatedTodo_001 = /* description */todo[/* description */1];
-                      var updatedTodo_002 = /* complete */!todo[/* complete */2];
+                      var updatedTodo_000 = /* id */todo[/* id */0];
+                      var updatedTodo_001 = /* title */todo[/* title */1];
+                      var updatedTodo_002 = /* description */todo[/* description */2];
+                      var updatedTodo_003 = /* complete */!todo[/* complete */3];
                       var updatedTodo = /* record */[
                         updatedTodo_000,
                         updatedTodo_001,
-                        updatedTodo_002
+                        updatedTodo_002,
+                        updatedTodo_003
                       ];
                       return /* Update */Block.__(0, [/* record */[
                                   /* todos */List.append(List.filter((function (t) {
-                                                return Caml_obj.caml_notequal(t, todo);
+                                                return t[/* id */0] !== todo[/* id */0];
                                               }))(state[/* todos */0]), /* :: */[
                                         updatedTodo,
                                         /* [] */0
                                       ]),
                                   /* newTitle */state[/* newTitle */1],
-                                  /* newDescription */state[/* newDescription */2]
+                                  /* newDescription */state[/* newDescription */2],
+                                  /* lastId */state[/* lastId */3]
                                 ]]);
                   case 3 : 
                       var todo$1 = action[0];
                       return /* Update */Block.__(0, [/* record */[
                                   /* todos */List.filter((function (t) {
-                                            return Caml_obj.caml_notequal(t, todo$1);
+                                            return t[/* id */0] !== todo$1[/* id */0];
                                           }))(state[/* todos */0]),
                                   /* newTitle */state[/* newTitle */1],
-                                  /* newDescription */state[/* newDescription */2]
+                                  /* newDescription */state[/* newDescription */2],
+                                  /* lastId */state[/* lastId */3]
                                 ]]);
                   
                 }
@@ -329,7 +332,6 @@ exports.textInput = textInput;
 exports.smallMarginTop = smallMarginTop;
 exports.theme = theme;
 exports.component = component;
-exports.handleClick = handleClick;
 exports.make = make;
 exports.$$default = $$default;
 exports.default = $$default;
