@@ -6,7 +6,8 @@ let todoItem =
   Css.style([Css.width(Css.pct(100.0)), Css.flexDirection(Css.column)]);
 let todoItemContainer = Css.style([]);
 let cardActions = Css.style([Css.justifyContent(Css.flexEnd)]);
-let preWrap = Css.style([Css.whiteSpace(`preWrap)]);
+let descriptionClass =
+  Css.style([Css.whiteSpace(`preWrap), Css.wordWrap(Css.breakWord)]);
 let cardContent = Css.style([Css.important(Css.paddingTop(`px(0)))]);
 
 let make = (~todo: todo, ~onChangeState=?, ~onDelete=?, _children) => {
@@ -66,7 +67,7 @@ let make = (~todo: todo, ~onChangeState=?, ~onDelete=?, _children) => {
           </MaterialUi.Grid>
           <MaterialUi.Grid xs=V12>
             <MaterialUi.CardContent className=cardContent>
-              <MaterialUi.Typography className=preWrap>
+              <MaterialUi.Typography className=descriptionClass>
                 {todo.description |> ReasonReact.string}
               </MaterialUi.Typography>
             </MaterialUi.CardContent>

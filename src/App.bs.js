@@ -72,7 +72,10 @@ var layout = Css.style(/* :: */[
       Css.flex(1),
       /* :: */[
         Css.justifyContent(Css.center),
-        /* [] */0
+        /* :: */[
+          Css.maxWidth(Css.pct(100.0)),
+          /* [] */0
+        ]
       ]
     ]);
 

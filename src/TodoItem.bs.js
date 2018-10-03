@@ -31,9 +31,12 @@ var cardActions = Css.style(/* :: */[
       /* [] */0
     ]);
 
-var preWrap = Css.style(/* :: */[
+var descriptionClass = Css.style(/* :: */[
       Css.whiteSpace(/* preWrap */660870029),
-      /* [] */0
+      /* :: */[
+        Css.wordWrap(Css.breakWord),
+        /* [] */0
+      ]
     ]);
 
 var cardContent = Css.style(/* :: */[
@@ -66,7 +69,7 @@ function make(todo, onChangeState, onDelete, _) {
                                                                                         }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUIIcons.Undo[/* make */0](/* array */[]))]))) : React.createElement("div", undefined, ReasonReact.element(undefined, undefined, MaterialUi_IconButton.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, onChangeState !== undefined ? onChangeState : (function () {
                                                                                           return /* () */0;
                                                                                         }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUIIcons.Check[/* make */0](/* array */[]))])))]))])),
-                                                  ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_CardContent.make(cardContent, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, preWrap, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[todo[/* description */2]]))]))]))
+                                                  ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_CardContent.make(cardContent, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, descriptionClass, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[todo[/* description */2]]))]))]))
                                                 ]))]))]));
             }),
           /* initialState */component[/* initialState */10],
@@ -80,7 +83,7 @@ exports.component = component;
 exports.todoItem = todoItem;
 exports.todoItemContainer = todoItemContainer;
 exports.cardActions = cardActions;
-exports.preWrap = preWrap;
+exports.descriptionClass = descriptionClass;
 exports.cardContent = cardContent;
 exports.make = make;
 /* component Not a pure module */

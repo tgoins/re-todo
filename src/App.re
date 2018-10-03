@@ -34,7 +34,12 @@ let root =
     Css.flexGrow(1),
   ]);
 let layoutContainer = Css.style([flexBox, Css.flex(1)]);
-let layout = Css.style([Css.flex(1), Css.justifyContent(Css.center)]);
+let layout =
+  Css.style([
+    Css.flex(1),
+    Css.justifyContent(Css.center),
+    Css.maxWidth(Css.pct(100.0)),
+  ]);
 let mainPaper =
   Css.style([
     Css.width(Css.pct(100.0)),
