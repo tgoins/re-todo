@@ -17,14 +17,14 @@ let make = (~todo: todo, ~onChangeState=?, ~onDelete=?, _children) => {
       xs=V12 lg=V6 item=true justify=`Center className=todoItemContainer>
       <MaterialUi.Card className=todoItem>
         <MaterialUi.Grid container=true>
-          <MaterialUi.Grid xs=V7 item=true>
+          <MaterialUi.Grid xs=V8 item=true>
             <MaterialUi.CardHeader title={todo.title |> ReasonReact.string}>
-              <MaterialUi.Typography variant=`Title>
+              <MaterialUi.Typography>
                 {todo.title |> ReasonReact.string}
               </MaterialUi.Typography>
             </MaterialUi.CardHeader>
           </MaterialUi.Grid>
-          <MaterialUi.Grid xs=V5 item=true>
+          <MaterialUi.Grid xs=V4 item=true>
             <MaterialUi.CardActions className=cardActions>
               {
                 switch (todo.complete) {

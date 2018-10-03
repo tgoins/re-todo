@@ -82,9 +82,9 @@ var layout = Css.style(/* :: */[
 var mainPaper = Css.style(/* :: */[
       Css.width(Css.pct(100.0)),
       /* :: */[
-        Css.padding(Css.px(8)),
+        Css.marginTop(Css.em(1.0)),
         /* :: */[
-          Css.margin(Css.em(1.0)),
+          Css.marginBottom(Css.em(1.0)),
           /* [] */0
         ]
       ]
@@ -105,8 +105,11 @@ var form = Css.style(/* :: */[
                 /* :: */[
                   Css.marginRight(Css.auto),
                   /* :: */[
-                    Css.padding(Css.em(0.5)),
-                    /* [] */0
+                    Css.paddingTop(Css.em(0.5)),
+                    /* :: */[
+                      Css.paddingBottom(Css.em(0.5)),
+                      /* [] */0
+                    ]
                   ]
                 ]
               ]
@@ -151,6 +154,11 @@ var categoryLabel = Css.style(/* :: */[
       ]
     ]);
 
+var paperInnerContainer = Css.style(/* :: */[
+      Css.padding(Css.em(0.5)),
+      /* [] */0
+    ]);
+
 var theme = Styles.createMuiTheme({
       palette: {
         primary: {
@@ -191,7 +199,7 @@ function make() {
                                         className: layoutContainer
                                       }, React.createElement("main", {
                                             className: layout
-                                          }, ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, centered, undefined, undefined, /* Column */-81804554, undefined, undefined, /* V4 */3, /* V6 */5, /* V8 */7, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Paper.make(mainPaper, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[
+                                          }, ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, centered, undefined, undefined, /* Column */-81804554, undefined, undefined, /* V4 */3, /* V6 */5, /* V8 */7, /* V24 */3, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Paper.make(mainPaper, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, paperInnerContainer, undefined, true, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[
                                                                         ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, Styles$ReactTemplate.textCenter, undefined, undefined, undefined, undefined, undefined, undefined, /* Headline */579538228, undefined, undefined, /* array */["What would you like to do?"]))])),
                                                                         ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, centered, undefined, undefined, /* Column */-81804554, true, /* Center */980392437, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[React.createElement("form", {
                                                                                         className: form,
@@ -342,6 +350,7 @@ exports.submitBtn = submitBtn;
 exports.textInput = textInput;
 exports.smallMarginTop = smallMarginTop;
 exports.categoryLabel = categoryLabel;
+exports.paperInnerContainer = paperInnerContainer;
 exports.theme = theme;
 exports.component = component;
 exports.make = make;

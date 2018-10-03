@@ -43,8 +43,8 @@ let layout =
 let mainPaper =
   Css.style([
     Css.width(Css.pct(100.0)),
-    Css.padding(Css.px(8)),
-    Css.margin(Css.em(1.0)),
+    Css.marginTop(Css.em(1.0)),
+    Css.marginBottom(Css.em(1.0)),
   ]);
 let form =
   Css.style([
@@ -55,7 +55,8 @@ let form =
     Css.marginBottom(Css.px(10)),
     Css.marginLeft(Css.auto),
     Css.marginRight(Css.auto),
-    Css.padding(Css.em(0.5)),
+    Css.paddingTop(Css.em(0.5)),
+    Css.paddingBottom(Css.em(0.5)),
   ]);
 let submitBtn =
   Css.style([
@@ -73,6 +74,7 @@ let categoryLabel =
     Css.paddingBottom(Css.em(0.5)),
     Css.paddingTop(Css.em(0.5)),
   ]);
+let paperInnerContainer = Css.style([Css.padding(Css.em(0.5))]);
 
 let theme =
   createMuiTheme({
@@ -146,9 +148,16 @@ let make = _children => {
         <div className=layoutContainer>
           <main className=layout>
             <MaterialUi.Grid
-              xs=V12 sm=V8 md=V6 lg=V4 className=centered direction=`Column>
+              xs=V12
+              sm=V8
+              md=V6
+              lg=V4
+              spacing=V24
+              className=centered
+              direction=`Column>
               <MaterialUi.Paper className=mainPaper>
-                <MaterialUi.Grid xs=V12 container=true>
+                <MaterialUi.Grid
+                  xs=V12 container=true className=paperInnerContainer>
                   <MaterialUi.Grid xs=V12 item=true>
                     <MaterialUi.Typography
                       variant=`Headline className=Styles.textCenter>
