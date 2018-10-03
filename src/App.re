@@ -38,7 +38,6 @@ let layout = Css.style([Css.flex(1), Css.justifyContent(Css.center)]);
 let mainPaper =
   Css.style([
     Css.width(Css.pct(100.0)),
-    Css.minHeight(Css.vh(60.0)),
     Css.padding(Css.px(8)),
     Css.margin(Css.em(1.0)),
   ]);
