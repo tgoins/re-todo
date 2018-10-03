@@ -50,6 +50,7 @@ let form =
     Css.marginBottom(Css.px(10)),
     Css.marginLeft(Css.auto),
     Css.marginRight(Css.auto),
+    Css.padding(Css.em(0.5)),
   ]);
 let submitBtn =
   Css.style([
@@ -62,6 +63,11 @@ let submitBtn =
 let textInput = Css.style([fullWidth]);
 let smallMarginTop =
   Css.style([Css.important(Css.marginTop(Css.em(1.0)))]);
+let categoryLabel =
+  Css.style([
+    Css.paddingBottom(Css.em(0.5)),
+    Css.paddingTop(Css.em(0.5)),
+  ]);
 
 let theme =
   createMuiTheme({
@@ -141,7 +147,7 @@ let make = _children => {
                   <MaterialUi.Grid xs=V12 item=true>
                     <MaterialUi.Typography
                       variant=`Headline className=Styles.textCenter>
-                      {"What needs to be done?" |> ReasonReact.string}
+                      {"What would you like to do?" |> ReasonReact.string}
                     </MaterialUi.Typography>
                   </MaterialUi.Grid>
                   <MaterialUi.Grid
@@ -220,7 +226,8 @@ let make = _children => {
                       ) {
                       | 0 => ReasonReact.null
                       | _ =>
-                        <MaterialUi.Typography variant=`Title>
+                        <MaterialUi.Typography
+                          variant=`Title className=categoryLabel>
                           {"To do" |> ReasonReact.string}
                         </MaterialUi.Typography>
                       }
@@ -252,7 +259,8 @@ let make = _children => {
                       ) {
                       | 0 => ReasonReact.null
                       | _ =>
-                        <MaterialUi.Typography variant=`Title>
+                        <MaterialUi.Typography
+                          variant=`Title className=categoryLabel>
                           {"Completed tasks" |> ReasonReact.string}
                         </MaterialUi.Typography>
                       }
