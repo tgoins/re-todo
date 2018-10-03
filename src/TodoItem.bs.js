@@ -3,7 +3,7 @@
 
 var Css = require("bs-css/src/Css.js");
 var React = require("react");
-var ReasonReact = require("reason-react/lib/js/src/ReasonReact.js");
+var ReasonReact = require("reason-react/src/ReasonReact.js");
 var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var MaterialUIIcons = require("bs-material-ui-icons/src/MaterialUIIcons.js");
 var MaterialUi_Card = require("@jsiebern/bs-material-ui/src/MaterialUi_Card.bs.js");
@@ -31,6 +31,19 @@ var cardActions = Css.style(/* :: */[
       /* [] */0
     ]);
 
+var preWrap = Css.style(/* :: */[
+      Css.whiteSpace(/* preWrap */660870029),
+      /* [] */0
+    ]);
+
+var cardContent = Css.style(/* :: */[
+      Css.important(Css.paddingTop(/* `px */[
+                25096,
+                0
+              ])),
+      /* [] */0
+    ]);
+
 function make(todo, onChangeState, onDelete, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
@@ -53,7 +66,7 @@ function make(todo, onChangeState, onDelete, _) {
                                                                                         }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUIIcons.Undo[/* make */0](/* array */[]))]))) : React.createElement("div", undefined, ReasonReact.element(undefined, undefined, MaterialUi_IconButton.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, onChangeState !== undefined ? onChangeState : (function () {
                                                                                           return /* () */0;
                                                                                         }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUIIcons.Check[/* make */0](/* array */[]))])))]))])),
-                                                  ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_CardContent.make(undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[todo[/* description */2]]))]))]))
+                                                  ReasonReact.element(undefined, undefined, MaterialUi_Grid.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* V12 */11, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_CardContent.make(cardContent, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_Typography.make(undefined, preWrap, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[todo[/* description */2]]))]))]))
                                                 ]))]))]));
             }),
           /* initialState */component[/* initialState */10],
@@ -67,5 +80,7 @@ exports.component = component;
 exports.todoItem = todoItem;
 exports.todoItemContainer = todoItemContainer;
 exports.cardActions = cardActions;
+exports.preWrap = preWrap;
+exports.cardContent = cardContent;
 exports.make = make;
 /* component Not a pure module */
