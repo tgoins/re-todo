@@ -1,4 +1,5 @@
 open Types;
+open Utils;
 
 [@bs.module "@material-ui/core/styles"]
 external createMuiTheme: Js.t({..}) => Js.t({..}) = "createMuiTheme";
@@ -8,6 +9,8 @@ type state = {
   newTitle: string,
   newDescription: string,
   lastId: int,
+  snackbarOpen: bool,
+  lastDeletedTodo: option(todo),
 };
 
 type action =
@@ -15,7 +18,9 @@ type action =
   | ChangeTitle(string)
   | ChangeDescription(string)
   | ChangeComplete(todo)
-  | RemoveTodo(todo);
+  | RemoveTodo(todo)
+  | ResetSnackbar
+  | UndoDelete;
 
 let fullWidth = Css.width(Css.pct(100.0));
 let flexBox = Css.display(Css.flexBox);
@@ -75,6 +80,13 @@ let categoryLabel =
     Css.paddingTop(Css.em(0.5)),
   ]);
 let paperInnerContainer = Css.style([Css.padding(Css.em(0.5))]);
+let whiteText = Css.style([Css.important(Css.color(Css.white))]);
+let success =
+  Css.style([
+    Css.important(
+      Css.backgroundColor(Css.hex(muiToCss(MaterialUi.Colors.Green.c600))),
+    ),
+  ]);
 
 let theme =
   createMuiTheme({
@@ -97,14 +109,17 @@ let make = _children => {
     newTitle: "",
     newDescription: "",
     lastId: 0,
+    snackbarOpen: false,
+    lastDeletedTodo: None,
   },
   reducer: (action, state) =>
     switch (action) {
     | AddTodo =>
       switch (state.newTitle) {
-      | "" => ReasonReact.NoUpdate
+      | "" => ReasonReact.NoUpdate /* TODO: Display a validation warning */
       | _ =>
         ReasonReact.Update({
+          ...state,
           todos:
             List.append(
               state.todos,
@@ -139,7 +154,26 @@ let make = _children => {
       ReasonReact.Update({
         ...state,
         todos: List.filter(t => t.id != todo.id, state.todos),
+        lastDeletedTodo: Some(todo),
+        snackbarOpen: true,
       })
+    | ResetSnackbar =>
+      ReasonReact.Update({
+        ...state,
+        lastDeletedTodo: None,
+        snackbarOpen: false,
+      })
+    | UndoDelete =>
+      switch (state.lastDeletedTodo) {
+      | None => ReasonReact.NoUpdate
+      | Some(todo) =>
+        ReasonReact.Update({
+          ...state,
+          todos: List.append(state.todos, [todo]),
+          lastDeletedTodo: None,
+          snackbarOpen: false,
+        })
+      }
     },
   render: self =>
     <MaterialUi_MuiThemeProvider theme={`ObjectGeneric(theme)}>
@@ -303,6 +337,20 @@ let make = _children => {
                 </MaterialUi.Grid>
               </MaterialUi.Paper>
             </MaterialUi.Grid>
+            <MaterialUi.Snackbar
+              open_={self.state.snackbarOpen}
+              onClose={(_e, _r) => self.send(ResetSnackbar)}>
+              <MaterialUi.SnackbarContent
+                className=success
+                action={
+                  <MaterialUi.Button
+                    className=whiteText onClick={_e => self.send(UndoDelete)}>
+                    {"Undo" |> ReasonReact.string}
+                  </MaterialUi.Button>
+                }
+                message={"Task deleted" |> ReasonReact.string}
+              />
+            </MaterialUi.Snackbar>
           </main>
         </div>
         <Footer />

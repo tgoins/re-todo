@@ -8,11 +8,14 @@ var Block = require("bs-platform/lib/js/block.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
+var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var MaterialUIIcons = require("bs-material-ui-icons/src/MaterialUIIcons.js");
 var MaterialUi_Grid = require("@jsiebern/bs-material-ui/src/MaterialUi_Grid.bs.js");
 var MaterialUi_Input = require("@jsiebern/bs-material-ui/src/MaterialUi_Input.bs.js");
 var MaterialUi_Paper = require("@jsiebern/bs-material-ui/src/MaterialUi_Paper.bs.js");
 var MaterialUi_Button = require("@jsiebern/bs-material-ui/src/MaterialUi_Button.bs.js");
+var MaterialUi_Snackbar = require("@jsiebern/bs-material-ui/src/MaterialUi_Snackbar.bs.js");
+var Utils$ReactTemplate = require("./Utils.bs.js");
 var Footer$ReactTemplate = require("./Footer.bs.js");
 var Header$ReactTemplate = require("./Header.bs.js");
 var MaterialUi_TextField = require("@jsiebern/bs-material-ui/src/MaterialUi_TextField.bs.js");
@@ -22,6 +25,7 @@ var MaterialUi_Typography = require("@jsiebern/bs-material-ui/src/MaterialUi_Typ
 var MaterialUi_Color_Green = require("@jsiebern/bs-material-ui/src/MaterialUi_Color_Green.bs.js");
 var TodoItem$ReactTemplate = require("./TodoItem.bs.js");
 var Styles = require("@material-ui/core/styles");
+var MaterialUi_SnackbarContent = require("@jsiebern/bs-material-ui/src/MaterialUi_SnackbarContent.bs.js");
 var MaterialUi_MuiThemeProvider = require("@jsiebern/bs-material-ui/src/MaterialUi_MuiThemeProvider.bs.js");
 
 var fullWidth = Css.width(Css.pct(100.0));
@@ -159,6 +163,16 @@ var paperInnerContainer = Css.style(/* :: */[
       /* [] */0
     ]);
 
+var whiteText = Css.style(/* :: */[
+      Css.important(Css.color(Css.white)),
+      /* [] */0
+    ]);
+
+var success = Css.style(/* :: */[
+      Css.important(Css.backgroundColor(Css.hex(Utils$ReactTemplate.muiToCss(MaterialUi_Color_Green.c600)))),
+      /* [] */0
+    ]);
+
 var theme = Styles.createMuiTheme({
       palette: {
         primary: {
@@ -243,37 +257,75 @@ function make() {
                                                                                                     }), List.filter((function (t) {
                                                                                                             return t[/* complete */3];
                                                                                                           }))(self[/* state */1][/* todos */0])))))]))
-                                                                      ]))]))])))), ReasonReact.element(undefined, undefined, Footer$ReactTemplate.make(/* array */[])))]));
+                                                                      ]))]))])), ReasonReact.element(undefined, undefined, MaterialUi_Snackbar.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, (function (_, _$1) {
+                                                      return Curry._1(self[/* send */3], /* ResetSnackbar */1);
+                                                    }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, self[/* state */1][/* snackbarOpen */4], undefined, undefined, undefined, undefined, undefined, undefined, /* array */[ReasonReact.element(undefined, undefined, MaterialUi_SnackbarContent.make(Js_primitive.some(ReasonReact.element(undefined, undefined, MaterialUi_Button.make(whiteText, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, (function () {
+                                                                            return Curry._1(self[/* send */3], /* UndoDelete */2);
+                                                                          }), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Undo"]))), success, "Task deleted", undefined, undefined, undefined, undefined, undefined, /* array */[]))])))), ReasonReact.element(undefined, undefined, Footer$ReactTemplate.make(/* array */[])))]));
             }),
           /* initialState */(function () {
               return /* record */[
                       /* todos : [] */0,
                       /* newTitle */"",
                       /* newDescription */"",
-                      /* lastId */0
+                      /* lastId */0,
+                      /* snackbarOpen */false,
+                      /* lastDeletedTodo */undefined
                     ];
             }),
           /* retainedProps */component[/* retainedProps */11],
           /* reducer */(function (action, state) {
               if (typeof action === "number") {
-                var match = state[/* newTitle */1];
-                if (match === "") {
-                  return /* NoUpdate */0;
-                } else {
-                  return /* Update */Block.__(0, [/* record */[
-                              /* todos */List.append(state[/* todos */0], /* :: */[
-                                    /* record */[
-                                      /* id */state[/* lastId */3] + 1 | 0,
-                                      /* title */state[/* newTitle */1],
-                                      /* description */state[/* newDescription */2],
-                                      /* complete */false
-                                    ],
-                                    /* [] */0
-                                  ]),
-                              /* newTitle */"",
-                              /* newDescription */"",
-                              /* lastId */state[/* lastId */3] + 1 | 0
-                            ]]);
+                switch (action) {
+                  case 0 : 
+                      var match = state[/* newTitle */1];
+                      if (match === "") {
+                        return /* NoUpdate */0;
+                      } else {
+                        return /* Update */Block.__(0, [/* record */[
+                                    /* todos */List.append(state[/* todos */0], /* :: */[
+                                          /* record */[
+                                            /* id */state[/* lastId */3] + 1 | 0,
+                                            /* title */state[/* newTitle */1],
+                                            /* description */state[/* newDescription */2],
+                                            /* complete */false
+                                          ],
+                                          /* [] */0
+                                        ]),
+                                    /* newTitle */"",
+                                    /* newDescription */"",
+                                    /* lastId */state[/* lastId */3] + 1 | 0,
+                                    /* snackbarOpen */state[/* snackbarOpen */4],
+                                    /* lastDeletedTodo */state[/* lastDeletedTodo */5]
+                                  ]]);
+                      }
+                  case 1 : 
+                      return /* Update */Block.__(0, [/* record */[
+                                  /* todos */state[/* todos */0],
+                                  /* newTitle */state[/* newTitle */1],
+                                  /* newDescription */state[/* newDescription */2],
+                                  /* lastId */state[/* lastId */3],
+                                  /* snackbarOpen */false,
+                                  /* lastDeletedTodo */undefined
+                                ]]);
+                  case 2 : 
+                      var match$1 = state[/* lastDeletedTodo */5];
+                      if (match$1 !== undefined) {
+                        return /* Update */Block.__(0, [/* record */[
+                                    /* todos */List.append(state[/* todos */0], /* :: */[
+                                          match$1,
+                                          /* [] */0
+                                        ]),
+                                    /* newTitle */state[/* newTitle */1],
+                                    /* newDescription */state[/* newDescription */2],
+                                    /* lastId */state[/* lastId */3],
+                                    /* snackbarOpen */false,
+                                    /* lastDeletedTodo */undefined
+                                  ]]);
+                      } else {
+                        return /* NoUpdate */0;
+                      }
+                  
                 }
               } else {
                 switch (action.tag | 0) {
@@ -282,14 +334,18 @@ function make() {
                                   /* todos */state[/* todos */0],
                                   /* newTitle */action[0],
                                   /* newDescription */state[/* newDescription */2],
-                                  /* lastId */state[/* lastId */3]
+                                  /* lastId */state[/* lastId */3],
+                                  /* snackbarOpen */state[/* snackbarOpen */4],
+                                  /* lastDeletedTodo */state[/* lastDeletedTodo */5]
                                 ]]);
                   case 1 : 
                       return /* Update */Block.__(0, [/* record */[
                                   /* todos */state[/* todos */0],
                                   /* newTitle */state[/* newTitle */1],
                                   /* newDescription */action[0],
-                                  /* lastId */state[/* lastId */3]
+                                  /* lastId */state[/* lastId */3],
+                                  /* snackbarOpen */state[/* snackbarOpen */4],
+                                  /* lastDeletedTodo */state[/* lastDeletedTodo */5]
                                 ]]);
                   case 2 : 
                       var todo = action[0];
@@ -312,7 +368,9 @@ function make() {
                                       ]),
                                   /* newTitle */state[/* newTitle */1],
                                   /* newDescription */state[/* newDescription */2],
-                                  /* lastId */state[/* lastId */3]
+                                  /* lastId */state[/* lastId */3],
+                                  /* snackbarOpen */state[/* snackbarOpen */4],
+                                  /* lastDeletedTodo */state[/* lastDeletedTodo */5]
                                 ]]);
                   case 3 : 
                       var todo$1 = action[0];
@@ -322,7 +380,9 @@ function make() {
                                           }))(state[/* todos */0]),
                                   /* newTitle */state[/* newTitle */1],
                                   /* newDescription */state[/* newDescription */2],
-                                  /* lastId */state[/* lastId */3]
+                                  /* lastId */state[/* lastId */3],
+                                  /* snackbarOpen */true,
+                                  /* lastDeletedTodo */todo$1
                                 ]]);
                   
                 }
@@ -351,6 +411,8 @@ exports.textInput = textInput;
 exports.smallMarginTop = smallMarginTop;
 exports.categoryLabel = categoryLabel;
 exports.paperInnerContainer = paperInnerContainer;
+exports.whiteText = whiteText;
+exports.success = success;
 exports.theme = theme;
 exports.component = component;
 exports.make = make;
