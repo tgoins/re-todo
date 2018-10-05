@@ -19,7 +19,7 @@ Install Python, then run:
 
 ```sh
 cd public
-python -m http.server 8082
+python3 -m http.server 8082
 ```
 
 Then you can view the application at `localhost:8082`
