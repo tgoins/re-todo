@@ -1,17 +1,28 @@
 # re-todo
 
+> TODO app in ReasonML with React.
+
 ## Run Project
 
 ```sh
-npm install
-npm start
+yarn
+yarn start
 # in another tab
-npm run webpack
+yarn webpack
 ```
 
-After you see the webpack compilation succeed (the `npm run webpack` step), open up `src/index.html` (**no server needed!**). Then modify whichever `.re` file in `src` and refresh the page to see the changes.
+Open the `public/index.html` file in your browser to view the application!
 
-**For more elaborate ReasonReact examples**, please see https://github.com/reasonml-community/reason-react-example
+### Optional web server
+
+Install Python, then run:
+
+```sh
+cd public
+python -m http.server 8082
+```
+
+Then you can view the application at `localhost:8082`
 
 ## Build for Production
 
