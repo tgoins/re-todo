@@ -9,11 +9,13 @@ let appBar =
 let make = _children => {
   ...component,
   render: _self =>
-    <MaterialUi.AppBar position=`Static className=appBar color=`Primary>
-      <MaterialUi.Toolbar>
-        <MaterialUi.Typography variant=`Title color=`Inherit noWrap=true>
-          {"To-do App" |> ReasonReact.string}
-        </MaterialUi.Typography>
-      </MaterialUi.Toolbar>
-    </MaterialUi.AppBar>,
+    MaterialUi.(
+      <AppBar position=`Static className=appBar color=`Primary>
+        <Toolbar>
+          <Typography variant=`Title color=`Inherit noWrap=true>
+            {"To-do App" |> ReasonReact.string}
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    ),
 };

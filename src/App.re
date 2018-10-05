@@ -15,10 +15,10 @@ type state = {
 
 type action =
   | AddTodo
-  | ChangeTitle(string)
-  | ChangeDescription(string)
-  | ChangeComplete(todo)
-  | RemoveTodo(todo)
+  | UpdateTitle(string)
+  | UpdateDescription(string)
+  | ToggleComplete(todo)
+  | DeleteTodo(todo)
   | ResetSnackbar
   | UndoDelete;
 
@@ -137,7 +137,7 @@ let make = _children => {
           lastId: state.lastId + 1,
         })
       }
-    | ChangeComplete(todo) =>
+    | ToggleComplete(todo) =>
       let updatedTodo = {...todo, complete: !todo.complete};
       ReasonReact.Update({
         ...state,
@@ -147,10 +147,10 @@ let make = _children => {
             [updatedTodo],
           ),
       });
-    | ChangeDescription(description) =>
+    | UpdateDescription(description) =>
       ReasonReact.Update({...state, newDescription: description})
-    | ChangeTitle(title) => ReasonReact.Update({...state, newTitle: title})
-    | RemoveTodo(todo) =>
+    | UpdateTitle(title) => ReasonReact.Update({...state, newTitle: title})
+    | DeleteTodo(todo) =>
       ReasonReact.Update({
         ...state,
         todos: List.filter(t => t.id != todo.id, state.todos),
@@ -224,7 +224,7 @@ let make = _children => {
                             onChange={
                               event =>
                                 self.send(
-                                  ChangeTitle(
+                                  UpdateTitle(
                                     ReactEvent.Form.target(event)##value,
                                   ),
                                 )
@@ -241,7 +241,7 @@ let make = _children => {
                             onChange={
                               event =>
                                 self.send(
-                                  ChangeDescription(
+                                  UpdateDescription(
                                     ReactEvent.Form.target(event)##value,
                                   ),
                                 )
@@ -289,7 +289,7 @@ let make = _children => {
                                <TodoItem
                                  todo=t
                                  onChangeState={
-                                   _event => ChangeComplete(t) |> self.send
+                                   _event => ToggleComplete(t) |> self.send
                                  }
                                />,
                              List.filter(t => !t.complete, self.state.todos),
@@ -322,10 +322,10 @@ let make = _children => {
                                <TodoItem
                                  todo=t
                                  onDelete={
-                                   _event => RemoveTodo(t) |> self.send
+                                   _event => DeleteTodo(t) |> self.send
                                  }
                                  onChangeState={
-                                   _event => ChangeComplete(t) |> self.send
+                                   _event => ToggleComplete(t) |> self.send
                                  }
                                />,
                              List.filter(t => t.complete, self.state.todos),

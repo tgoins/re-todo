@@ -12,11 +12,13 @@ let footerClass =
 let make = _children => {
   ...component,
   render: _self =>
-    <footer className=footerClass>
-      <MaterialUi.Typography
-        color=`Inherit variant=`Body1 align=`Center gutterBottom=true>
-        [%raw {|'\u00a9'|}]
-        {" 2018 Tanner Goins" |> ReasonReact.string}
-      </MaterialUi.Typography>
-    </footer>,
+    MaterialUi.(
+      <footer className=footerClass>
+        <Typography
+          color=`Inherit variant=`Body1 align=`Center gutterBottom=true>
+          [%raw {|'\u00a9'|}]
+          {" 2018 Tanner Goins" |> ReasonReact.string}
+        </Typography>
+      </footer>
+    ),
 };
